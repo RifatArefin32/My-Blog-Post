@@ -1,7 +1,8 @@
 from django.shortcuts import render
 from rest_framework import generics
+from rest_framework.views import APIView
 from rest_framework.response import Response
-from rest_framework.permissions import AllowAny
+from rest_framework.permissions import AllowAny, IsAuthenticated
 from rest_framework_simplejwt.tokens import RefreshToken
 from django.contrib.auth.models import User
 from django.contrib.auth import authenticate
@@ -13,6 +14,7 @@ class RegisterView(generics.CreateAPIView):
     queryset = User.objects.all()
     permission_classes = (AllowAny, )
     serializer_class = RegisterSerializer
+    
     
 class LoginView(generics.GenericAPIView):
     serializer_class = LoginSerializer
@@ -34,3 +36,16 @@ class LoginView(generics.GenericAPIView):
             return Response({
                 'detail': 'Invalid credentials'
             }, status=401)
+            
+            
+class DashboardView(APIView):
+    permission_classes = (IsAuthenticated,)
+    
+    def get(selt, request):
+        user = request.user
+        user_serializer = UserSerializer(user)
+        
+        return Response({
+            'message': 'Welcome to dashboard',
+            'user': user_serializer.data
+        }, status=200)
