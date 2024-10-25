@@ -12,6 +12,8 @@ class BlogPostViewSet(viewsets.ModelViewSet):
 
     # def perform_create(self, serializer):
     #     serializer.save(author=self.request.user)
+    
+    # Get all blogposts
     def list(self, request, *args, **kwargs):
         try:
             queryset = self.get_queryset()
@@ -34,7 +36,8 @@ class BlogPostViewSet(viewsets.ModelViewSet):
                 },
                 status=status.HTTP_400_BAD_REQUEST
             )
-            
+       
+    # Create a blogpost
     def create(self, request, *args, **kwargs):
         try:
             serializer = self.get_serializer(data=request.data)
@@ -60,7 +63,8 @@ class BlogPostViewSet(viewsets.ModelViewSet):
                 },
                 status=status.HTTP_400_BAD_REQUEST
             )
-            
+      
+    # Retrieve a selected blogpost
     def retrieve(self, request, *args, **kwargs):
         try:
             instance = self.get_object()
@@ -91,6 +95,7 @@ class BlogPostViewSet(viewsets.ModelViewSet):
                 status=status.HTTP_400_BAD_REQUEST
             )
 
+    # Update a selected blogpost
     def update(self, request, *args, **kwargs):
         try:
             partial = kwargs.pop('partial', False)
@@ -124,6 +129,7 @@ class BlogPostViewSet(viewsets.ModelViewSet):
                 status=status.HTTP_400_BAD_REQUEST
             )
 
+    # Remove a blogpost
     def destroy(self, request, *args, **kwargs):
         try:
             instance = self.get_object()
