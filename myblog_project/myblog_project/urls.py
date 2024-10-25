@@ -34,8 +34,8 @@ urlpatterns = [
     path('api/token/refresh/', TokenRefreshView.as_view(), name='token_refresh'),
     
     # URLs for dashboard
-    path('api/dashboard/', DashboardView.as_view(), name='dashboard')
+    path('api/dashboard/', DashboardView.as_view(), name='dashboard'),
     
     # URLs for blogpost model
-    path('api/', include('blog.urls')),
+    path('api/', include('mbp_blog_app.urls')),
 ]
