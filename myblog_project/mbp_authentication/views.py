@@ -20,7 +20,7 @@ class LoginView(generics.GenericAPIView):
     def post(self, request, *args, **kwargs):
         username = request.data.get('username')
         password = request.data.get('password')
-        user = authenticate(username, password)
+        user = authenticate(username=username, password=password)
         
         if user is not None:
             refresh = RefreshToken.for_user(user)
@@ -28,7 +28,7 @@ class LoginView(generics.GenericAPIView):
             return Response({
                 'refresh': str(refresh),
                 'access': str(refresh.access_token),
-                'user': user_serializer
+                'user': user_serializer.data
             })
         else:
             return Response({
