@@ -1,0 +1,11 @@
+- Create a directory `DjangoBlogPost` at Desktop or any other directory and enter into the `DjangoBlogPost` directory.
+- Create a virtual environment `venv` for this project using `python -m venv venv` command.
+- Activate the virtual environment using `source venv/bin/activate` command and deactivate it using `deactivate` command.
+- Install django at this environment `pip3 install django`
+- Install Django REST Framework at this environment `pip3 install djangorestframework`
+- Create project: `django-admin startproject myblog_project` and enter into the porject.
+- Start the porject at the server: `python3 manage.py runserver`
+- Add rest-framework at the INSTALLED_APPS array of the project settings file.
+- Add `path('api-auth/', include('rest_framework.urls')),` to the project urls file
+- Run migration from the project directory using `python3 manage.py migrate` command
+- Create a super user using `python3 manage.py createsuperadmin`. This super user is treated as `admin`.
