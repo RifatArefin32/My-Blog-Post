@@ -22,7 +22,7 @@ class BlogPostViewSet(viewsets.ModelViewSet):
             return Response(
                 {
                     "message": "Blog posts retrieved successfully!",
-                    "status_code": status.HTTP_200_OK,
+                    "status": status.HTTP_200_OK,
                     "data": serializer.data
                 },
                 status=status.HTTP_200_OK
@@ -32,7 +32,7 @@ class BlogPostViewSet(viewsets.ModelViewSet):
                 {
                     "message": "Error retrieving blog posts.",
                     "error": str(e),
-                    "status_code": status.HTTP_400_BAD_REQUEST
+                    "status": status.HTTP_400_BAD_REQUEST
                 },
                 status=status.HTTP_400_BAD_REQUEST
             )
@@ -49,7 +49,7 @@ class BlogPostViewSet(viewsets.ModelViewSet):
             return Response(
                 {
                     "message": "Blog post created successfully!",
-                    "status_code": status.HTTP_201_CREATED,
+                    "status": status.HTTP_201_CREATED,
                     "data": serializer.data
                 },
                 status=status.HTTP_201_CREATED
@@ -59,7 +59,7 @@ class BlogPostViewSet(viewsets.ModelViewSet):
                 {
                     "message": "Error creating blog post.",
                     "error": str(e),
-                    "status_code": status.HTTP_400_BAD_REQUEST
+                    "status": status.HTTP_400_BAD_REQUEST
                 },
                 status=status.HTTP_400_BAD_REQUEST
             )
@@ -72,7 +72,7 @@ class BlogPostViewSet(viewsets.ModelViewSet):
             return Response(
                 {
                     "message": "Blog post retrieved successfully!",
-                    "status_code": status.HTTP_200_OK,
+                    "status": status.HTTP_200_OK,
                     "data": serializer.data
                 },
                 status=status.HTTP_200_OK
@@ -81,7 +81,7 @@ class BlogPostViewSet(viewsets.ModelViewSet):
             return Response(
                 {
                     "message": "Blog post not found.",
-                    "status_code": status.HTTP_404_NOT_FOUND
+                    "status": status.HTTP_404_NOT_FOUND
                 },
                 status=status.HTTP_404_NOT_FOUND
             )
@@ -90,7 +90,7 @@ class BlogPostViewSet(viewsets.ModelViewSet):
                 {
                     "message": "Error retrieving blog post.",
                     "error": str(e),
-                    "status_code": status.HTTP_400_BAD_REQUEST
+                    "status": status.HTTP_400_BAD_REQUEST
                 },
                 status=status.HTTP_400_BAD_REQUEST
             )
@@ -106,7 +106,7 @@ class BlogPostViewSet(viewsets.ModelViewSet):
             return Response(
                 {
                     "message": "Blog post updated successfully!",
-                    "status_code": status.HTTP_200_OK,
+                    "status": status.HTTP_200_OK,
                     "data": serializer.data
                 },
                 status=status.HTTP_200_OK
@@ -115,7 +115,7 @@ class BlogPostViewSet(viewsets.ModelViewSet):
             return Response(
                 {
                     "message": "Blog post not found.",
-                    "status_code": status.HTTP_404_NOT_FOUND
+                    "status": status.HTTP_404_NOT_FOUND
                 },
                 status=status.HTTP_404_NOT_FOUND
             )
@@ -124,7 +124,7 @@ class BlogPostViewSet(viewsets.ModelViewSet):
                 {
                     "message": "Error updating blog post.",
                     "error": str(e),
-                    "status_code": status.HTTP_400_BAD_REQUEST
+                    "status": status.HTTP_400_BAD_REQUEST
                 },
                 status=status.HTTP_400_BAD_REQUEST
             )
@@ -137,7 +137,7 @@ class BlogPostViewSet(viewsets.ModelViewSet):
             return Response(
                 {
                     "message": "Blog post deleted successfully!",
-                    "status_code": status.HTTP_204_NO_CONTENT
+                    "status": status.HTTP_204_NO_CONTENT
                 },
                 status=status.HTTP_204_NO_CONTENT
             )
@@ -145,7 +145,7 @@ class BlogPostViewSet(viewsets.ModelViewSet):
             return Response(
                 {
                     "message": "Blog post not found.",
-                    "status_code": status.HTTP_404_NOT_FOUND
+                    "status": status.HTTP_404_NOT_FOUND
                 },
                 status=status.HTTP_404_NOT_FOUND
             )
@@ -154,7 +154,7 @@ class BlogPostViewSet(viewsets.ModelViewSet):
                 {
                     "message": "Error deleting blog post.",
                     "error": str(e),
-                    "status_code": status.HTTP_400_BAD_REQUEST
+                    "status": status.HTTP_400_BAD_REQUEST
                 },
                 status=status.HTTP_400_BAD_REQUEST
             )
