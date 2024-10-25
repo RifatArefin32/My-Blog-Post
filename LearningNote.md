@@ -52,4 +52,5 @@ DATABASES = {
         )
     }
 ``` 
-- Add `serializers.py` at the `mbp_authentication` app
+- Add and create classes in `serializers.py` at the `mbp_authentication` app
+- Create `RegisterView` class at the `views.py` file
