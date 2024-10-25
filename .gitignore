@@ -1,3 +1,43 @@
-__pycache__/
+# Python
 *.pyc
+*.pyo
+*.pyd
+__pycache__/
+*.db
+*.sqlite3
+*.log
+*.pot
+*.py[cod]
+*.egg
+*.egg-info/
+dist/
+build/
+*.whl
+
+# Django
+*.log
+*.pot
+*.pyc
+__pycache__/
+media/
+staticfiles/
+*.sqlite3
+
+# Environment variables
+.env
+.venv/
 venv/
+ENV/
+env/
+env.bak/
+venv.bak/
+requirements.txt  # if you generate it locally and don't want to commit it
+
+# IDEs and editors
+.idea/
+.vscode/
+*.swp
+
+# Operating System files
+.DS_Store
+Thumbs.db
