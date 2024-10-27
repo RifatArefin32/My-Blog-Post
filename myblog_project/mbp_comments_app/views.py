@@ -21,13 +21,22 @@ class CommentViewSet(ViewSet):
             comments = Comment.objects.all()
             serializer = CommentSerializer(comments, many=True)
             
-            return Response(
-                {
-                    "message": "All comments are retrived successfully",
-                    "status": status.HTTP_200_OK,
-                    "data": serializer.data
-                }
-            )
+            if(serializer.data):
+                return Response(
+                    {
+                        "message": "All comments are retrived successfully",
+                        "status": status.HTTP_200_OK,
+                        "data": serializer.data
+                    }
+                )
+            else:
+                return Response(
+                    {
+                        "message": "No comment found",
+                        "status": status.HTTP_200_OK,
+                        "data": serializer.data
+                    }
+                )
 
         except Exception as e:
             return Response(
