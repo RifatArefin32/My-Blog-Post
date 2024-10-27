@@ -50,7 +50,6 @@ class CommentViewSet(ViewSet):
                 status=status.HTTP_500_INTERNAL_SERVER_ERROR
             )
 
-    
     # Create a comment
     def create(self, request):
         try:
@@ -88,7 +87,6 @@ class CommentViewSet(ViewSet):
                 status=status.HTTP_500_INTERNAL_SERVER_ERROR
             )
 
-
     # Retrieve comments for a specific blogpost
     def comments_of_a_blog_post(self, request, id=None):
         try:
@@ -125,7 +123,6 @@ class CommentViewSet(ViewSet):
                 status=status.HTTP_500_INTERNAL_SERVER_ERROR
             )
             
-    
     # Update a specific comment on a blog post
     def update_comment(self, request, id=None, comment_id=None):
         try:
@@ -139,7 +136,8 @@ class CommentViewSet(ViewSet):
                         "message": "You are not authorized to update this comment.",
                         "error": "Unauthorized access",
                         "status": status.HTTP_403_FORBIDDEN
-                    }
+                    },
+                    status=status.HTTP_403_FORBIDDEN
                 )
 
             # Update the comment
@@ -164,6 +162,52 @@ class CommentViewSet(ViewSet):
                 },
                 status=status.HTTP_400_BAD_REQUEST
             )
+        except Exception as e:
+            return Response(
+                {
+                    "message": "Something went wrong.",
+                    "error": str(e),
+                    "status": status.HTTP_500_INTERNAL_SERVER_ERROR
+                },
+                status=status.HTTP_500_INTERNAL_SERVER_ERROR
+            )
+              
+    # Delete a specific comment on a blog post
+    def delete_comment(self, request, id=None, comment_id=None):
+        try:
+            # Fetch the blog post and comment
+            blog_post = get_object_or_404(BlogPost, id=id)
+            comment = get_object_or_404(Comment, id=comment_id, blog_post=blog_post)
+            
+            # Check if the logged-in user is the author of the comment
+            if comment.user != request.user:
+                return Response(
+                    {
+                        "message": "You are not authorized to update this comment.",
+                        "error": "Unauthorized access",
+                        "status": status.HTTP_403_FORBIDDEN
+                    }, 
+                    status=status.HTTP_403_FORBIDDEN
+                )
+
+            if comment:
+                comment.delete()
+                return Response(
+                    {
+                        "message": "Comment deleted successfully",
+                        "status": status.HTTP_200_OK
+                    },
+                    status=status.HTTP_200_OK
+                )
+                
+            return Response(
+                {
+                    "message": "Error deleting the comment",
+                    "status":status.HTTP_400_BAD_REQUEST,
+                },
+                status=status.HTTP_400_BAD_REQUEST
+            )
+        
         except Exception as e:
             return Response(
                 {
