@@ -38,4 +38,7 @@ urlpatterns = [
     
     # URLs for blogpost model
     path('api/', include('mbp_blog_app.urls')),
+    
+    # URLs for comment model
+    path('api/', include('mbp_comments_app.urls')),
 ]

@@ -41,6 +41,7 @@ INSTALLED_APPS = [
     'rest_framework_simplejwt',
     'mbp_authentication',
     'mbp_blog_app',
+    'mbp_comments_app',
 ]
 
 MIDDLEWARE = [
