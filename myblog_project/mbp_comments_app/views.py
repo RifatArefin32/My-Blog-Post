@@ -124,3 +124,52 @@ class CommentViewSet(ViewSet):
                 },
                 status=status.HTTP_500_INTERNAL_SERVER_ERROR
             )
+            
+    
+    # Update a specific comment on a blog post
+    def update_comment(self, request, id=None, comment_id=None):
+        try:
+            blog_post = get_object_or_404(BlogPost, id=id)
+            comment = get_object_or_404(Comment, id=comment_id, blog_post=blog_post)
+            
+            # Check if the logged-in user is the author of the comment
+            if comment.user != request.user:
+                return Response(
+                    {
+                        "message": "You are not authorized to update this comment.",
+                        "error": "Unauthorized access",
+                        "status": status.HTTP_403_FORBIDDEN
+                    }
+                )
+
+            # Update the comment
+            serializer = CommentSerializer(comment, data=request.data, partial=True)
+            
+            if serializer.is_valid():
+                serializer.save()
+                return Response(
+                    {
+                        "message": "Comment updated successfully",
+                        "status": status.HTTP_200_OK,
+                        "data": serializer.data
+                    },
+                    status=status.HTTP_200_OK
+                )
+
+            return Response(
+                {
+                    "message": "Error updating the comment",
+                    "status":status.HTTP_400_BAD_REQUEST,
+                    "error": serializer.errors
+                },
+                status=status.HTTP_400_BAD_REQUEST
+            )
+        except Exception as e:
+            return Response(
+                {
+                    "message": "Something went wrong.",
+                    "error": str(e),
+                    "status": status.HTTP_500_INTERNAL_SERVER_ERROR
+                },
+                status=status.HTTP_500_INTERNAL_SERVER_ERROR
+            )
