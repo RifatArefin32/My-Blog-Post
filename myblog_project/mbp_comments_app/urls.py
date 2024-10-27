@@ -7,4 +7,5 @@ router.register(r'comments', CommentViewSet)
 
 urlpatterns = [
     path('', include(router.urls)),
+    path('comments/blog_post/<int:id>', CommentViewSet.as_view({'get': 'comments_of_a_blog_post'}), name='comments-of-a-blog-post')
 ]
